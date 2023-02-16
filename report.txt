@@ -1,0 +1,21 @@
+--Sell Report--
+ 0/10000 Full-bodied Exotic Herbal Wine !
+ 0/10000 Chilled Coconut Cocktail !
+ 0/10000 Crispy Stir-Fried Vegetables !
+ 0/10000 Milk Tea !
+ 0/10000 Organic Feed !
+ 0/10000 Carrot Confit !
+ 0/5000 Cheese !
+ 0/10000 Classic Couscous !
+ 0/10000 Couscous !
+ 0/10000 Mild Date Palm Wine !
+ 0/10000 Stir-Fried Vegetables !
+ 0/20000 Wheat Flour !
+ 0/10000 Transparent Empty Bottle !
+ 2217/20000 Tough Hide ! Refill 17783 Tough Hide !
+
+
+
+--Buy Report--
+Ordered Cooking Honey fail !
+Ordered Crispy Meat Croquette fail !

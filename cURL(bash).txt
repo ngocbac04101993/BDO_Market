@@ -1,0 +1,18 @@
+curl 'https://trade.sea.playblackdesert.com/Home/ConfirmSecondPwd' \
+  -H 'authority: trade.sea.playblackdesert.com' \
+  -H 'accept: */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' \
+  -H 'cookie: lang=en-US; blackdesert_cid=QV2UPYPORGHGX6N05ZK0; _gcl_au=1.1.1608457091.1670306510; _fbp=fb.1.1670306509935.1936082667; visid_incap_2512950=ia1yfR9pS9amMcJhJTivTD1PkGMAAAAAQUIPAAAAAABoKNNzR24Ur6Ip8Hj1rUn2; _rdt_uuid=1670898488329.e0cf028f-0ab3-44e6-ae53-0b273507d2b3; visid_incap_2512161=E09lCQy3S+2/5qP83we6O7vajmMAAAAAQ0IPAAAAAACAuUKpARtEh14NabXBy+xIXRD9/PWRnOlr; _ga_7WRV3PC0Y0=GS1.1.1674008852.7.1.1674008868.44.0.0; visitTopicNoList=37375|33053; _gid=GA1.2.1643565134.1676368386; _ga_EBR7BC6Z4P=GS1.1.1676440116.42.1.1676441145.0.0.0; nlbi_2512950=ABDdQsnrJwp4x+aelq8CZwAAAAB5hG9+KpJvAHgDlfANY4HZ; TradeAuth_Session=l1iitit3q3z2mxifi0gzhlcp; __RequestVerificationToken=JGBXgFXNoO0Z7scPzcgDxQ-luuHzEa7DP0ChDU8_c4qTTDdoDEL_6x3D4ZQvA4sqJkEMpFFSciKLJp2s57GxptM3PlWnPuq9ThOFBR7HVIc1; _ga=GA1.2.1741573731.1670306510; incap_ses_219_2512950=jYK2DPNgJDXJKxvWuAsKA4zG7WMAAAAAoINLtPf9NJJnlgu2xt6KQA==; _gat=1' \
+  -H 'origin: https://trade.sea.playblackdesert.com' \
+  -H 'referer: https://trade.sea.playblackdesert.com/Home/list/hot' \
+  -H 'sec-ch-ua: "Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Windows"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  --data-raw '__RequestVerificationToken=0wpiHjo7I-4ZkKUuAX6SJxnk0h4phsK8kTtM0fZNDEZ0f0VmqufuhykcfC0A81vgov20AOaqFbhDfECVuBLx8xPffa-Rgn5GszOpF8fF0QA1&secondPwd=123456' \
+  --compressed
