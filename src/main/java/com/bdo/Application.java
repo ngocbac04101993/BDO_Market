@@ -166,7 +166,7 @@ public class Application {
             BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.REPORT));
             writer.write(report);
             writer.close();
-            if(!schedule) Desktop.getDesktop().edit(new File(Constant.REPORT));
+            if(!schedule) Desktop.getDesktop().open(new File(Constant.REPORT));
         } catch (Exception e) {
             e.printStackTrace();
         }

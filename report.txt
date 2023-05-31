@@ -4,18 +4,19 @@
  0/10000 Crispy Stir-Fried Vegetables !
  0/10000 Milk Tea !
  0/10000 Organic Feed !
+ 0/20000 Black Stone Powder !
  0/10000 Carrot Confit !
  0/5000 Cheese !
  0/10000 Classic Couscous !
- 0/10000 Couscous !
  0/10000 Mild Date Palm Wine !
+ 4993/10000 Pickled Vegetables ! Refill 5007 Pickled Vegetables !
  0/10000 Stir-Fried Vegetables !
- 0/20000 Wheat Flour !
+ 1494/20000 Sweet Potato Dough ! Refill 18506 Sweet Potato Dough !
  0/10000 Transparent Empty Bottle !
- 2217/20000 Tough Hide ! Refill 17783 Tough Hide !
 
 
 
 --Buy Report--
 Ordered Cooking Honey fail !
 Ordered Crispy Meat Croquette fail !
+Ordered Rhino Hide fail !
