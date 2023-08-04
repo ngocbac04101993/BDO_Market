@@ -1,7 +1,7 @@
 ﻿Elixir of Concentration,700,10000,20000,y
 Elixir of Will,702,10000,20000,y
 Elixir of Fury,704,10000,45000,y
-Elixir of Life,708,10000,y,n
+Elixir of Life,708,10000,y,y
 Elixir of Time,749,10000,88000,y
 Melted Iron Shard,4051,20000,8500,y
 Iron Ingot,4052,10000,40000,y
@@ -22,9 +22,9 @@ Pure Titanium Crystal,4083,2000,y,n
 Melted Noc Shard,4085,20000,20000,y
 Noc Ingot,4086,10000,83000,y
 Pure Noc Crystal,4087,2000,y,n
-Red Crystal,4468,20000,30000,y
-Black Crystal,4470,20000,45000,y
-Black Stone Powder,4901,20000,3300,y
+Red Crystal,4468,20000,30000,n
+Black Crystal,4470,20000,45000,n
+Black Stone Powder,4901,20000,3300,n
 Cotton Yarn,5851,20000,22000,y
 Flax Thread,5852,20000,4000,y
 Silk Thread,5853,20000,14000,y

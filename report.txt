@@ -1,9 +1,65 @@
-
-
-
-
---Buy Report--
- Restock Iron Ore
- Ordered Iron Ore fail !
- Restock Soft Bread
- Ordered Soft Bread fail !
+--Sell Report--
+ 3934/10000 ! Refill 6066 ﻿Elixir of Concentration
+ 4383/10000 ! Refill 5617 Elixir of Fury
+ Too low. Melted Iron Shard 8150/8500
+ 0/2000 Pure Iron Crystal !
+ 2985/10000 ! Refill 7015 Lead Ingot
+ 0/2000 Pure Lead Crystal !
+ 4517/10000 ! Refill 5483 Copper Ingot
+ Minlist Copper Ingot to 41800
+ 0/2000 Pure Copper Crystal !
+ 0/2000 Pure Tin Crystal !
+ Too low. Melted Zinc Shard 17900/22000
+ Too low. Zinc Ingot 78000/88000
+ Too low. Brass Ingot 50500/58000
+ Too low. Remove 10000 Bronze Ingot ! 38500/50000
+ Too low. Remove 10000 Steel ! 18400/30000
+ 0/2000 Pure Vanadium Crystal !
+ Minlist Melted Titanium Shard to 26600
+ 0/2000 Pure Titanium Crystal !
+ Too low. Remove 20000 Melted Noc Shard ! 18100/20000
+ Too low. Remove 10000 Noc Ingot ! 78000/83000
+ Too low. Cotton Yarn 15600/22000
+ 3741/20000 ! Refill 16259 Flax Thread
+ Minlist Flax Thread to 3790
+ 0/20000 Knitting Yarn !
+ Minlist Knitting Yarn to 13600
+ Too low. Cotton Fabric 88500/90000
+ Too low. Silk 52500/55000
+ Minlist Soft Hide to 8500
+ 0/20000 Thick Fur !
+ Minlist Thick Fur to 15200
+ Minlist Lightweight Plume to 25600
+ 3377/20000 ! Refill 16623 Ground Bird Meat
+ Minlist Ground Bird Meat to 7150
+ 0/20000 Cheese !
+ 9999/20000 ! Refill 10001 Vinegar
+ 0/10000 Fruit Wine !
+ Minlist Cheese Gratin to 31900
+ 0/10000 Honey Wine !
+ Minlist Honey Wine to 2600
+ Minlist Sute Tea to 29000
+ 0/10000 Fig Pie !
+ Minlist Fig Pie to 8000
+ 0/10000 Stir-Fried Vegetables !
+ 362/10000 ! Refill 9638 Milk Tea
+ Minlist High-Quality Ham Sandwich to 75000
+ 0/10000 Coconut Cocktail !
+ Minlist Coconut Cocktail to 4220
+ 0/10000 Balacs Lunchbox !
+ 0/10000 Smoked Fish Steak !
+ Minlist Dark Pudding to 25900
+ 4590/10000 ! Refill 5410 Steaming Hot Grilled Bird Meat
+ 0/10000 Balenos Meal !
+ Minlist Balenos Meal to 27000
+ 0/10000 Mediah Meal !
+ 0/10000 Special Mediah Meal !
+ Minlist Valencia Meal to 34500
+ Too low. Special Valencia Meal 108000/120000
+ 0/10000 O'dyllita Meal !
+ Minlist O'dyllita Meal to 41100
+ 0/10000 Special O'dyllita Meal !
+ Minlist Special O'dyllita Meal to 131000
+ 0/10000 Transparent Empty Bottle !
+ 0/1000 Lump of Raw Sugar !
+ Minlist Lump of Raw Sugar to 9550

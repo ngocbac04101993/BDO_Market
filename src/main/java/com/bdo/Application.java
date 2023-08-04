@@ -34,11 +34,11 @@ public class Application {
             ScheduleTask task = new ScheduleTask(t);
             t.scheduleAtFixedRate(task, 0, 20000);
         } else {
-            execute();
+            execute(args[0]);
         }
     }
 
-    public static boolean execute() throws IOException {
+    public static boolean execute(String mode) throws IOException {
         if (readData()) {
             System.out.println("Load Data successfully !");
         } else {
@@ -46,22 +46,17 @@ public class Application {
             return false;
         }
         if (getBiddingList()) {
-//            sellReport();
-            buyReport();
+            if (mode.equals("1")) sellReport();
+            if (mode.equals("2")) buyReport();
             BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.REPORT));
             writer.write(report);
             writer.close();
             if (!schedule) Desktop.getDesktop().open(new File(Constant.REPORT));
             return true;
         } else {
-            report = "Token expired !";
-            BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.REPORT));
-            writer.write(report);
-            writer.close();
-            if (!schedule) Desktop.getDesktop().open(new File(Constant.REPORT));
+            Desktop.getDesktop().open(new File(Constant.CURL));
             return false;
         }
-
     }
 
 
@@ -102,10 +97,11 @@ public class Application {
         report = "--Sell Report--";
         try {
             for (AutoItem item : sellList) {
+//                if (item.getMainKey() != 4063) continue;
                 if (Constant.NO.equals(item.getMinMaxPrice())) continue;
                 SellItem sell = biddingList.getSellList().stream().filter(sellItem -> (item.getMainKey() == sellItem.getMainKey())).findAny().orElse(null);
                 boolean tooLow = false;
-                long minToSell = 0, curMaxPrice = 0, curMinPrice;
+                long minToSell = 0, curMaxPrice = 0, curMinPrice = 0;
                 ArrayList<SellBuyInfo> listPrices = null;
                 if (item.isExtremeMode()) {
                     listPrices = getPrices(item.getMainKey());
@@ -125,15 +121,21 @@ public class Application {
                     }
                     if (item.isExtremeMode()) {
                         boolean hasListing = false;
+                        if (minToSell < curMinPrice) minToSell = curMinPrice;
                         for (SellBuyInfo price : listPrices) {
                             if (sell != null && price.getPricePerOne() == sell.getPricePerOne()) {
                                 price.setSellCount(price.getSellCount() - sell.getLeftCount());
                             }
-                            if (price.getPricePerOne() >= minToSell && price.getSellCount() > item.getCount() / 3) {
+                            if (price.getPricePerOne() < minToSell && price.getSellCount() > item.getCount() / 3) {
                                 hasListing = true;
                                 break;
                             } else {
-                                minToSell = price.getPricePerOne();
+                                if (price.getPricePerOne() >= minToSell && price.getSellCount() > item.getCount() / 3) {
+                                    hasListing = true;
+                                    break;
+                                } else {
+                                    minToSell = price.getPricePerOne();
+                                }
                             }
                         }
                         long desiredPrice = curMaxPrice;
@@ -144,9 +146,12 @@ public class Application {
                             report += String.join(" ", "\n Minlist", item.getName(), "to", String.valueOf(desiredPrice));
                     }
                 } else {
-                    if (sell != null && sell.getPricePerOne() <= curMaxPrice)
-                        report += String.join(" ", "\n Too low. Remove", String.valueOf(sell.getLeftCount()), item.getName(), "!");
+                    if (sell != null && sell.getPricePerOne() <= minToSell)
+                        report += String.join(" ", "\n Too low. Remove", String.valueOf(sell.getLeftCount()), item.getName(), "!", curMaxPrice + "/" + minToSell);
+                    if (sell == null)
+                        report += String.join(" ", "\n Too low.", item.getName(), curMaxPrice + "/" + minToSell);
                 }
+                Thread.sleep(200L);
             }
         } catch (Exception e) {
             e.printStackTrace();

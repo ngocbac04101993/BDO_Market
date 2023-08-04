@@ -16,7 +16,7 @@ public class ScheduleTask extends TimerTask {
     @Override
     public void run() {
         try {
-            if (!Application.execute()) timer.cancel();
+            if (!Application.execute("2")) timer.cancel();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
