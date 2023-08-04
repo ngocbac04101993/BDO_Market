@@ -1,5 +1,6 @@
 package com.bdo.service;
 
+import com.bdo.constant.Constant;
 import com.bdo.model.AutoItem;
 
 import java.io.BufferedReader;
@@ -15,7 +16,7 @@ public class CSVService {
         String line;
         while ((line = br.readLine()) != null) {
             String[] data = line.split(",");
-            AutoItem item = new AutoItem(data[0], data[1], data[2], data[3]);
+            AutoItem item = new AutoItem(data[0], Long.parseLong(data[1]), Long.parseLong(data[2]), data[3], Constant.YES.equals(data[4]));
             lsItem.add(item);
         }
         br.close();

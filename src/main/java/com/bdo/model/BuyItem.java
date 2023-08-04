@@ -14,25 +14,6 @@ public class BuyItem {
 
     long pricePerOne;
 
-    long addEnchantPrice;
-
-    long registerMoneyCount;
-
-    long keyType;
-
     long mainKey;
 
-    long subKey;
-
-    long count;
-
-    String name;
-
-    long grade;
-
-    long mainCategory;
-
-    long subCategory;
-
-    long chooseKey;
 }

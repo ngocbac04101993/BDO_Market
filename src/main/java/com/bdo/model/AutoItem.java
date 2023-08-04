@@ -8,10 +8,12 @@ import lombok.Data;
 public class AutoItem {
     String name;
 
-    String index;
+    long mainKey;
 
-    String count;
+    long count;
 
-    String preOrder;
+    String minMaxPrice;
+
+    boolean extremeMode;
 
 }

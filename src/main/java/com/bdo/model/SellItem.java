@@ -15,33 +15,6 @@ public class SellItem {
 
     long soldCount;
 
-    long accumulateMoneyCount;
-
-    @JsonProperty("isSealed")
-    boolean isSealed;
-
-    long enchantNeedCount;
-
-    long enchantMaterialPrice;
-
-    @JsonProperty("ringBuff")
-    boolean ringBuff;
-
-    long keyType;
-
     long mainKey;
 
-    long subKey;
-
-    long count;
-
-    String name;
-
-    long grade;
-
-    long mainCategory;
-
-    long subCategory;
-
-    long chooseKey;
 }

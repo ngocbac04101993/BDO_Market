@@ -10,26 +10,26 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Timer;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 import static com.bdo.service.ConfigService.*;
 
 public class Application {
 
 
-    public static BiddingList biddingList;
+    public static MyBiddingList biddingList;
 
-    public static String report;
+    public static String report = "";
 
     public static ObjectMapper objectMapper = new ObjectMapper();
 
     public static boolean schedule;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         readConfig();
-        if (schedule = props.getProperty("schedule").equals("true")) {
+        schedule = props.getProperty("schedule").equals("true");
+        if (schedule) {
             Timer t = new Timer();
             ScheduleTask task = new ScheduleTask(t);
             t.scheduleAtFixedRate(task, 0, 20000);
@@ -38,25 +38,36 @@ public class Application {
         }
     }
 
-    public static boolean execute() {
+    public static boolean execute() throws IOException {
         if (readData()) {
             System.out.println("Load Data successfully !");
         } else {
             System.out.println("Can not load data !");
             return false;
         }
-        if (getPreOrderList()) {
-            sellReport();
+        if (getBiddingList()) {
+//            sellReport();
             buyReport();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.REPORT));
+            writer.write(report);
+            writer.close();
+            if (!schedule) Desktop.getDesktop().open(new File(Constant.REPORT));
             return true;
+        } else {
+            report = "Token expired !";
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.REPORT));
+            writer.write(report);
+            writer.close();
+            if (!schedule) Desktop.getDesktop().open(new File(Constant.REPORT));
+            return false;
         }
-        return false;
+
     }
 
 
-    public static boolean getPreOrderList() {
+    public static boolean getBiddingList() {
         try {
-            String mainURL = props.getProperty("urlInfo") + props.getProperty("preOrderList");
+            String mainURL = props.getProperty("urlInfo") + props.getProperty("biddingList");
             URL url = new URL(mainURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -65,18 +76,17 @@ public class Application {
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Cookie", cookie);
             OutputStream os = conn.getOutputStream();
-            OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
+            OutputStreamWriter osw = new OutputStreamWriter(os, StandardCharsets.UTF_8);
             osw.write("{}");
             osw.flush();
             osw.close();
             os.close();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String jsonData = "";
+            StringBuilder jsonData = new StringBuilder();
             String output;
-            while ((output = br.readLine()) != null)
-                jsonData += output;
+            while ((output = br.readLine()) != null) jsonData.append(output);
             conn.disconnect();
-            biddingList = objectMapper.readValue(jsonData, BiddingList.class);
+            biddingList = objectMapper.readValue(jsonData.toString(), MyBiddingList.class);
             if (biddingList.getResultCode() != 0) {
                 System.out.println("Get Pre Order list error: " + jsonData);
                 return false;
@@ -92,19 +102,50 @@ public class Application {
         report = "--Sell Report--";
         try {
             for (AutoItem item : sellList) {
-                if (!"y".equals(item.getPreOrder()))
-                    continue;
-                SellItem sell = biddingList.getSellList().stream()
-                        .filter(sellItem -> (Long.valueOf(item.getIndex()).longValue() == sellItem.getMainKey())).findAny()
-                        .orElse(null);
-                if (sell == null || sell.getLeftCount() == 0L) {
-                    report += String.join(" ", "\n", "0/" + item.getCount(), item.getName(), "!");
-                    continue;
+                if (Constant.NO.equals(item.getMinMaxPrice())) continue;
+                SellItem sell = biddingList.getSellList().stream().filter(sellItem -> (item.getMainKey() == sellItem.getMainKey())).findAny().orElse(null);
+                boolean tooLow = false;
+                long minToSell = 0, curMaxPrice = 0, curMinPrice;
+                ArrayList<SellBuyInfo> listPrices = null;
+                if (item.isExtremeMode()) {
+                    listPrices = getPrices(item.getMainKey());
+                    curMaxPrice = getMaxPrice(listPrices);
+                    curMinPrice = getMinPrice(listPrices);
+                    if (Constant.YES.equals(item.getMinMaxPrice())) minToSell = curMinPrice;
+                    else minToSell = Long.parseLong(item.getMinMaxPrice());
+                    tooLow = curMaxPrice < minToSell;
                 }
-                if (sell.getLeftCount() < (Integer.parseInt(item.getCount()) / 2)) {
-                    report += String.join(" ", "\n", String.valueOf(sell.getLeftCount()) + "/" + item.getCount(), item.getName(), "!");
-                    report += String.join(" ", " Refill " + (Long.parseLong(item.getCount()) - sell.getLeftCount()),
-                            item.getName(), "!");
+                if (!tooLow) {
+                    if (sell == null || sell.getLeftCount() == 0L) {
+                        report += String.join(" ", "\n", "0/" + item.getCount(), item.getName(), "!");
+                    } else {
+                        if (sell.getLeftCount() < (item.getCount() / 2)) {
+                            report += String.join(" ", "\n", sell.getLeftCount() + "/" + item.getCount(), "! Refill " + (item.getCount() - sell.getLeftCount()), item.getName());
+                        }
+                    }
+                    if (item.isExtremeMode()) {
+                        boolean hasListing = false;
+                        for (SellBuyInfo price : listPrices) {
+                            if (sell != null && price.getPricePerOne() == sell.getPricePerOne()) {
+                                price.setSellCount(price.getSellCount() - sell.getLeftCount());
+                            }
+                            if (price.getPricePerOne() >= minToSell && price.getSellCount() > item.getCount() / 3) {
+                                hasListing = true;
+                                break;
+                            } else {
+                                minToSell = price.getPricePerOne();
+                            }
+                        }
+                        long desiredPrice = curMaxPrice;
+                        if (hasListing) {
+                            desiredPrice = minToSell;
+                        }
+                        if (sell == null || sell.getPricePerOne() != desiredPrice)
+                            report += String.join(" ", "\n Minlist", item.getName(), "to", String.valueOf(desiredPrice));
+                    }
+                } else {
+                    if (sell != null && sell.getPricePerOne() <= curMaxPrice)
+                        report += String.join(" ", "\n Too low. Remove", String.valueOf(sell.getLeftCount()), item.getName(), "!");
                 }
             }
         } catch (Exception e) {
@@ -116,63 +157,74 @@ public class Application {
         report += "\n\n\n\n--Buy Report--";
         try {
             for (AutoItem item : buyList) {
-                BuyItem buy = biddingList.getBuyList().stream()
-                        .filter(buyItem -> (Long.valueOf(item.getIndex()).longValue() == buyItem.getMainKey())).findAny()
-                        .orElse(null);
-                if (buy == null) {
-                    boolean result;
-                    if ("n".equalsIgnoreCase(item.getPreOrder())) continue;
-                    String price = "y".equals(item.getPreOrder()) ?
-                            String.valueOf(getMaxPrice(item.getIndex())) :
-                            item.getPreOrder();
-                    do {
-                        result = preOrder(item.getIndex(), price, item.getCount());
-                        if (result) {
-                            report = report + String.join(" ", "\nOrdered", item.getCount(), item.getName(), "!");
-                        } else {
-                            report = report + String.join(" ", "\nOrdered", item.getName(), "fail !");
+                if (Constant.NO.equalsIgnoreCase(item.getMinMaxPrice())) continue;
+                BuyItem buy = biddingList.getBuyList().stream().filter(buyItem -> (item.getMainKey() == buyItem.getMainKey())).findAny().orElse(null);
+                boolean tooHigh;
+                long maxToBuy, curMinPrice, curMaxPrice;
+                if (buy == null || buy.getLeftCount() < item.getCount() || buy.getBoughtCount() > 0L || item.isExtremeMode()) {
+                    ItemSellBuyInfo itemSellBuyInfo = getItemInfo(item.getMainKey());
+                    ArrayList<SellBuyInfo> listPrices = getPrices(itemSellBuyInfo);
+                    curMinPrice = getMinPrice(listPrices);
+                    curMaxPrice = getMaxPrice(listPrices);
+                    maxToBuy = Constant.YES.equalsIgnoreCase(item.getMinMaxPrice()) ? curMaxPrice : Long.parseLong(item.getMinMaxPrice());
+                    tooHigh = curMinPrice > maxToBuy;
+                    if (!tooHigh) {
+                        long desiredPrice = curMinPrice;
+                        Collections.reverse(listPrices);
+                        boolean hasOrder = false;
+                        for (SellBuyInfo price : listPrices) {
+                            if (buy != null && price.getPricePerOne() == buy.getPricePerOne()) {
+                                price.setBuyCount(price.getBuyCount() - buy.getLeftCount());
+                            }
+                            if (price.getPricePerOne() <= maxToBuy && price.getBuyCount() > 0) {
+                                hasOrder = true;
+                                break;
+                            } else {
+                                maxToBuy = price.getPricePerOne();
+                            }
                         }
-                        Thread.sleep(300L);
-                    } while (result);
-                    continue;
-                }
-                if (buy.getBoughtCount() > 0L &&
-                        receiveItem(item.getIndex(), String.valueOf(buy.getBuyNo())))
-                    report = report + String.join(" ", "\nReceived", String.valueOf(buy.getBoughtCount()),
-                            item.getName(), ".", buy.getLeftCount() + "/" + item.getCount(),
-                            "left !");
-                if (buy.getLeftCount() < Long.parseLong(item.getCount()) && buy.getLeftCount() > 0L && withdraw(
-                        item.getIndex(), String.valueOf(buy.getBuyNo()), String.valueOf(buy.getLeftCount()))) {
-                    report = report + String.join(" ", "\nRestock", item.getName());
-                    buy.setLeftCount(0L);
-                }
-                if (buy.getLeftCount() == 0L) {
-                    boolean result;
-                    if ("n".equalsIgnoreCase(item.getPreOrder())) continue;
-                    String price = "y".equals(item.getPreOrder()) ?
-                            String.valueOf(getMaxPrice(item.getIndex())) :
-                            item.getPreOrder();
-                    do {
-                        result = preOrder(item.getIndex(), price, item.getCount());
-                        if (result) {
-                            report = report + String.join(" ", "\nOrdered", item.getCount(), item.getName(), "!");
-                        } else {
-                            report = report + String.join(" ", "\nOrdered", item.getName(), "fail !");
+                        if (hasOrder) {
+                            desiredPrice = maxToBuy;
                         }
-                        Thread.sleep(300L);
-                    } while (result);
+                        if (buy == null) {
+                            boolean result;
+                            do {
+                                result = preOrder(item.getMainKey(), desiredPrice, item.getCount(), 0);
+                                if (result) {
+                                    report = report + String.join(" ", "\n Ordered", String.valueOf(item.getCount()), item.getName(), "!");
+                                } else {
+                                    report = report + String.join(" ", "\n Ordered", item.getName(), "fail !");
+                                }
+                                Thread.sleep(200L);
+                            } while (result);
+                        } else {
+                            if (buy.getLeftCount() < item.getCount() || buy.getBoughtCount() > 0L || buy.getPricePerOne() != desiredPrice) {
+                                if (preOrder(item.getMainKey(), desiredPrice, item.getCount(), buy.getBuyNo()))
+                                    report = report + String.join(" ", "\n Restock", item.getName());
+                                boolean result;
+                                do {
+                                    result = preOrder(item.getMainKey(), desiredPrice, item.getCount(), 0);
+                                    if (result) {
+                                        report = report + String.join(" ", "\n Ordered", String.valueOf(item.getCount()), item.getName(), "!");
+                                    } else {
+                                        report = report + String.join(" ", "\n Ordered", item.getName(), "fail !");
+                                    }
+                                    Thread.sleep(200L);
+                                } while (result);
+                            }
+                        }
+                    } else {
+                        if (buy != null && buy.getPricePerOne() >= curMinPrice)
+                            report += String.join(" ", "\n Too high. Remove order", item.getName(), "!");
+                    }
                 }
             }
-            BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.REPORT));
-            writer.write(report);
-            writer.close();
-            if(!schedule) Desktop.getDesktop().open(new File(Constant.REPORT));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static boolean preOrder(String buyMainKey, String buyPrice, String buyCount) {
+    public static boolean preOrder(long buyMainKey, long buyPrice, long buyCount, long buyNo) {
         try {
             String mainURL = props.getProperty("urlAction") + props.getProperty("preOrder");
             URL url = new URL(mainURL);
@@ -185,36 +237,41 @@ public class Application {
             params.put("buyMainKey", buyMainKey);
             params.put("buyPrice", buyPrice);
             params.put("buyCount", buyCount);
+            if (buyNo > 0) params.put("retryBiddingNo", buyNo);
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String, Object> param : params.entrySet()) {
-                if (postData.length() != 0)
-                    postData.append('&');
+                if (postData.length() != 0) postData.append('&');
                 postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
                 postData.append('=');
                 postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
             }
-            byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+            byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
             conn.getOutputStream().write(postDataBytes);
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String jsonData = "";
+            StringBuilder jsonData = new StringBuilder();
             String output;
-            while ((output = br.readLine()) != null)
-                jsonData += output;
+            while ((output = br.readLine()) != null) jsonData.append(output);
             conn.disconnect();
             ObjectMapper objectMapper = new ObjectMapper();
-            Response res = objectMapper.readValue(jsonData, Response.class);
-            if (res.getResultCode() != 0)
-                return false;
-            return true;
+            Response res = objectMapper.readValue(jsonData.toString(), Response.class);
+            return res.getResultCode() == 0;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
-    public static long getMaxPrice(String mainKey) {
+    public static ArrayList<SellBuyInfo> getPrices(long mainKey) {
+        return Objects.requireNonNull(getItemInfo(mainKey)).getMarketConditionList();
+    }
+
+    public static ArrayList<SellBuyInfo> getPrices(ItemSellBuyInfo itemSellBuyInfo) {
+        return itemSellBuyInfo.getMarketConditionList();
+    }
+
+    public static ItemSellBuyInfo getItemInfo(long mainKey) {
         try {
-            String mainURL = props.getProperty("urlInfo") + props.getProperty("getPrice");
+            String mainURL = props.getProperty("urlInfo") + props.getProperty("getItemInfo");
             URL url = new URL(mainURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -223,38 +280,45 @@ public class Application {
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             Map<String, Object> params = new LinkedHashMap<>();
             params.put("mainKey", mainKey);
-            params.put("keyType", Integer.valueOf(0));
-            params.put("subKey", Integer.valueOf(0));
-            params.put("isUp", Boolean.valueOf(true));
+            params.put("keyType", 0);
+            params.put("subKey", 0);
+            params.put("isUp", Boolean.TRUE);
             params.put("__RequestVerificationToken", token);
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String, Object> param : params.entrySet()) {
-                if (postData.length() != 0)
-                    postData.append('&');
+                if (postData.length() != 0) postData.append('&');
                 postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
                 postData.append('=');
                 postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
             }
-            byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+            byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
             conn.getOutputStream().write(postDataBytes);
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String jsonData = "";
+            StringBuilder jsonData = new StringBuilder();
             String output;
-            while ((output = br.readLine()) != null)
-                jsonData += output;
+            while ((output = br.readLine()) != null) jsonData.append(output);
             conn.disconnect();
             ObjectMapper objectMapper = new ObjectMapper();
-            ItemSellBuy res = objectMapper.readValue(jsonData, ItemSellBuy.class);
-            if (res.getResultCode() != 0)
-                return 0L;
-            return res.getMarketConditionList().get(res.getMarketConditionList().size() - 1).getPricePerOne();
+            ItemSellBuyInfo res = objectMapper.readValue(jsonData.toString(), ItemSellBuyInfo.class);
+            if (res.getResultCode() != 0) return null;
+            return res;
         } catch (Exception e) {
             e.printStackTrace();
-            return 0L;
+            return null;
         }
     }
 
-    public static boolean receiveItem(String mainKey, String buyNo) {
+    public static long getMinPrice(ArrayList<SellBuyInfo> listPrices) {
+        if (listPrices.isEmpty()) return 0L;
+        return listPrices.get(0).getPricePerOne();
+    }
+
+    public static long getMaxPrice(ArrayList<SellBuyInfo> listPrices) {
+        if (listPrices.isEmpty()) return 0L;
+        return listPrices.get(listPrices.size() - 1).getPricePerOne();
+    }
+
+    public static boolean receiveItem(long mainKey, String buyNo) {
         try {
             String mainURL = props.getProperty("urlAction") + props.getProperty("receiveItem");
             URL url = new URL(mainURL);
@@ -265,38 +329,34 @@ public class Application {
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             Map<String, Object> params = new LinkedHashMap<>();
             params.put("mainKey", mainKey);
-            params.put("keyType", Integer.valueOf(0));
-            params.put("subKey", Integer.valueOf(0));
+            params.put("keyType", 0);
+            params.put("subKey", 0);
             params.put("buyNo", buyNo);
             params.put("__RequestVerificationToken", token);
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String, Object> param : params.entrySet()) {
-                if (postData.length() != 0)
-                    postData.append('&');
+                if (postData.length() != 0) postData.append('&');
                 postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
                 postData.append('=');
                 postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
             }
-            byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+            byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
             conn.getOutputStream().write(postDataBytes);
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String jsonData = "";
+            StringBuilder jsonData = new StringBuilder();
             String output;
-            while ((output = br.readLine()) != null)
-                jsonData += output;
+            while ((output = br.readLine()) != null) jsonData.append(output);
             conn.disconnect();
             ObjectMapper objectMapper = new ObjectMapper();
-            Response res = objectMapper.readValue(jsonData, Response.class);
-            if (res.getResultCode() != 0)
-                return false;
-            return true;
+            Response res = objectMapper.readValue(jsonData.toString(), Response.class);
+            return res.getResultCode() == 0;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
-    public static boolean withdraw(String mainKey, String buyNo, String count) {
+    public static boolean withdraw(long mainKey, String buyNo, long count) {
         try {
             String mainURL = props.getProperty("urlAction") + props.getProperty("withdraw");
             URL url = new URL(mainURL);
@@ -311,24 +371,21 @@ public class Application {
             params.put("count", count);
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String, Object> param : params.entrySet()) {
-                if (postData.length() != 0)
-                    postData.append('&');
+                if (postData.length() != 0) postData.append('&');
                 postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
                 postData.append('=');
                 postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
             }
-            byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+            byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
             conn.getOutputStream().write(postDataBytes);
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String jsonData = "";
+            StringBuilder jsonData = new StringBuilder();
             String output;
-            while ((output = br.readLine()) != null)
-                jsonData += output;
+            while ((output = br.readLine()) != null) jsonData.append(output);
             conn.disconnect();
             ObjectMapper objectMapper = new ObjectMapper();
-            Response res = objectMapper.readValue(jsonData, Response.class);
-            if (res.getResultCode() != 0)
-                return false;
+            Response res = objectMapper.readValue(jsonData.toString(), Response.class);
+            if (res.getResultCode() != 0) return false;
             return true;
         } catch (Exception e) {
             e.printStackTrace();

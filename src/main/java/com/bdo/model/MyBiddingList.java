@@ -7,14 +7,12 @@ import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ItemSellBuy {
-    int[] priceList;
+public class MyBiddingList {
+    List<BuyItem> buyList;
 
-    List<SellBuyInfo> marketConditionList;
-
-    long basePrice;
-
-    long maxRegisterForWorldMarket;
+    List<SellItem> sellList;
 
     int resultCode;
+
+    String resultMsg;
 }
