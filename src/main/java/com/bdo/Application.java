@@ -4,6 +4,7 @@ import com.bdo.constant.Constant;
 import com.bdo.model.*;
 import com.bdo.schedule.ScheduleTask;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.awt.*;
 import java.io.*;
@@ -31,8 +32,8 @@ public class Application {
         schedule = props.getProperty("schedule").equals("true");
         if (schedule) {
             Timer t = new Timer();
-            ScheduleTask task = new ScheduleTask(t);
-            t.scheduleAtFixedRate(task, 0, 20000);
+            ScheduleTask task = new ScheduleTask(t, args[0]);
+            t.scheduleAtFixedRate(task, 0, 50000);
         } else {
             execute(args[0]);
         }
@@ -46,12 +47,9 @@ public class Application {
             return false;
         }
         if (getBiddingList()) {
+            report = "";
             if (mode.equals("1")) sellReport();
             if (mode.equals("2")) buyReport();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.REPORT));
-            writer.write(report);
-            writer.close();
-            if (!schedule) Desktop.getDesktop().open(new File(Constant.REPORT));
             return true;
         } else {
             Desktop.getDesktop().open(new File(Constant.CURL));
@@ -97,62 +95,71 @@ public class Application {
         report = "--Sell Report--";
         try {
             for (AutoItem item : sellList) {
-//                if (item.getMainKey() != 4063) continue;
+//                if (item.getMainKey() != 702) continue;
                 if (Constant.NO.equals(item.getMinMaxPrice())) continue;
                 SellItem sell = biddingList.getSellList().stream().filter(sellItem -> (item.getMainKey() == sellItem.getMainKey())).findAny().orElse(null);
-                boolean tooLow = false;
-                long minToSell = 0, curMaxPrice = 0, curMinPrice = 0;
-                ArrayList<SellBuyInfo> listPrices = null;
+                long minToSell, curMaxPrice, curMinPrice;
+                ArrayList<SellBuyInfo> listPrices;
+                StringBuilder text = new StringBuilder();
+                if (sell == null || sell.getLeftCount() == 0L) {
+                    text.append(String.join(" ", " 0/" + item.getCount(), item.getName(), "!"));
+                } else {
+                    if (sell.getLeftCount() < (item.getCount() / 2)) {
+                        text.append(String.join(" ", " " + sell.getLeftCount() + "/" + item.getCount(), "! Refill " + (item.getCount() - sell.getLeftCount()), item.getName(), "!"));
+                    }
+                }
                 if (item.isExtremeMode()) {
                     listPrices = getPrices(item.getMainKey());
                     curMaxPrice = getMaxPrice(listPrices);
                     curMinPrice = getMinPrice(listPrices);
-                    if (Constant.YES.equals(item.getMinMaxPrice())) minToSell = curMinPrice;
-                    else minToSell = Long.parseLong(item.getMinMaxPrice());
-                    tooLow = curMaxPrice < minToSell;
-                }
-                if (!tooLow) {
-                    if (sell == null || sell.getLeftCount() == 0L) {
-                        report += String.join(" ", "\n", "0/" + item.getCount(), item.getName(), "!");
-                    } else {
-                        if (sell.getLeftCount() < (item.getCount() / 2)) {
-                            report += String.join(" ", "\n", sell.getLeftCount() + "/" + item.getCount(), "! Refill " + (item.getCount() - sell.getLeftCount()), item.getName());
+                    minToSell = Constant.YES.equals(item.getMinMaxPrice()) ? curMinPrice : Long.parseLong(item.getMinMaxPrice());
+                    if (curMaxPrice < minToSell) {
+                        if (sell != null) {
+                            if (sell.getPricePerOne() < minToSell) {
+                                text.setLength(0);
+                                text.append(String.join(" ", " Too low. Remove", String.valueOf(sell.getLeftCount()), item.getName(), "!", curMaxPrice + "/" + minToSell));
+                            } else text.setLength(0);
+                        } else {
+                            text.setLength(0);
+//                            text.append(String.join(" ", " Too low.", item.getName(), curMaxPrice + "/" + minToSell));
                         }
+                        if (!text.toString().isEmpty())
+                            report += "\n" + text;
+                        continue;
                     }
-                    if (item.isExtremeMode()) {
-                        boolean hasListing = false;
-                        if (minToSell < curMinPrice) minToSell = curMinPrice;
-                        for (SellBuyInfo price : listPrices) {
-                            if (sell != null && price.getPricePerOne() == sell.getPricePerOne()) {
-                                price.setSellCount(price.getSellCount() - sell.getLeftCount());
-                            }
-                            if (price.getPricePerOne() < minToSell && price.getSellCount() > item.getCount() / 3) {
+                    boolean hasListing = false;
+                    if (minToSell < curMinPrice) minToSell = curMinPrice;
+                    long previousPrice = minToSell;
+                    for (SellBuyInfo price : listPrices) {
+                        if (sell != null && price.getPricePerOne() == sell.getPricePerOne()) {
+                            price.setSellCount(price.getSellCount() - sell.getLeftCount());
+                        }
+                        if (price.getPricePerOne() < minToSell && price.getSellCount() > item.getCount() / 10) {
+                            hasListing = true;
+                            break;
+                        } else {
+                            if (price.getPricePerOne() >= minToSell && price.getSellCount() > item.getCount() / 10) {
                                 hasListing = true;
                                 break;
-                            } else {
-                                if (price.getPricePerOne() >= minToSell && price.getSellCount() > item.getCount() / 3) {
-                                    hasListing = true;
-                                    break;
-                                } else {
-                                    minToSell = price.getPricePerOne();
-                                }
                             }
+                            if (price.getPricePerOne() >= minToSell) previousPrice = price.getPricePerOne();
                         }
-                        long desiredPrice = curMaxPrice;
-                        if (hasListing) {
-                            desiredPrice = minToSell;
-                        }
-                        if (sell == null || sell.getPricePerOne() != desiredPrice)
-                            report += String.join(" ", "\n Minlist", item.getName(), "to", String.valueOf(desiredPrice));
                     }
-                } else {
-                    if (sell != null && sell.getPricePerOne() <= minToSell)
-                        report += String.join(" ", "\n Too low. Remove", String.valueOf(sell.getLeftCount()), item.getName(), "!", curMaxPrice + "/" + minToSell);
-                    if (sell == null)
-                        report += String.join(" ", "\n Too low.", item.getName(), curMaxPrice + "/" + minToSell);
+                    minToSell = previousPrice;
+                    long desiredPrice = curMaxPrice;
+                    if (hasListing) {
+                        desiredPrice = minToSell;
+                    }
+                    if (sell == null || sell.getPricePerOne() != desiredPrice)
+                        text.append(String.join(" ", " Minlist", item.getName(), "to", String.valueOf(desiredPrice)));
                 }
-                Thread.sleep(200L);
+                if (!text.toString().isEmpty())
+                    report += "\n" + text;
             }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.SELL_REPORT));
+            writer.write(report);
+            writer.close();
+            if (!schedule) Desktop.getDesktop().open(new File(Constant.SELL_REPORT));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -165,28 +172,37 @@ public class Application {
                 if (Constant.NO.equalsIgnoreCase(item.getMinMaxPrice())) continue;
                 BuyItem buy = biddingList.getBuyList().stream().filter(buyItem -> (item.getMainKey() == buyItem.getMainKey())).findAny().orElse(null);
                 boolean tooHigh;
-                long maxToBuy, curMinPrice, curMaxPrice;
-                if (buy == null || buy.getLeftCount() < item.getCount() || buy.getBoughtCount() > 0L || item.isExtremeMode()) {
+                long maxToBuy = 0, curMinPrice, curMaxPrice;
+                if (NumberUtils.isCreatable(item.getMinMaxPrice())) maxToBuy = Long.parseLong(item.getMinMaxPrice());
+                if (buy == null || buy.getLeftCount() < item.getCount() || buy.getBoughtCount() > 0L || item.isExtremeMode() || buy.getPricePerOne() < maxToBuy) {
                     ItemSellBuyInfo itemSellBuyInfo = getItemInfo(item.getMainKey());
+                    item.setCount(0 != itemSellBuyInfo.getAddBuyRefCountForWorldMarket() && itemSellBuyInfo.getAddBuyRefCountForWorldMarket() <= itemSellBuyInfo.getBiddingSellCount() ? itemSellBuyInfo.getAddBuyCountForWorldMarket() : itemSellBuyInfo.getMaxRegisterForWorldMarket());
+                    item.setMinCount(itemSellBuyInfo.getMaxRegisterForWorldMarket());
                     ArrayList<SellBuyInfo> listPrices = getPrices(itemSellBuyInfo);
                     curMinPrice = getMinPrice(listPrices);
                     curMaxPrice = getMaxPrice(listPrices);
-                    maxToBuy = Constant.YES.equalsIgnoreCase(item.getMinMaxPrice()) ? curMaxPrice : Long.parseLong(item.getMinMaxPrice());
+                    if (Constant.YES.equalsIgnoreCase(item.getMinMaxPrice())) maxToBuy = curMaxPrice;
                     tooHigh = curMinPrice > maxToBuy;
                     if (!tooHigh) {
-                        long desiredPrice = curMinPrice;
                         Collections.reverse(listPrices);
                         boolean hasOrder = false;
-                        for (SellBuyInfo price : listPrices) {
-                            if (buy != null && price.getPricePerOne() == buy.getPricePerOne()) {
-                                price.setBuyCount(price.getBuyCount() - buy.getLeftCount());
+                        if (maxToBuy > curMaxPrice) maxToBuy = curMaxPrice;
+                        long maxToBuyExtreme = maxToBuy;
+                        long desiredPrice = maxToBuy;
+                        if (item.isExtremeMode()) {
+                            for (SellBuyInfo price : listPrices) {
+                                if (price.getPricePerOne() > maxToBuy) continue;
+                                if (buy != null && price.getPricePerOne() == buy.getPricePerOne()) {
+                                    price.setBuyCount(price.getBuyCount() - buy.getLeftCount());
+                                }
+                                if (price.getPricePerOne() <= maxToBuy && price.getBuyCount() > 0) {
+                                    hasOrder = true;
+                                    break;
+                                } else {
+                                    maxToBuy = price.getPricePerOne();
+                                }
                             }
-                            if (price.getPricePerOne() <= maxToBuy && price.getBuyCount() > 0) {
-                                hasOrder = true;
-                                break;
-                            } else {
-                                maxToBuy = price.getPricePerOne();
-                            }
+                            desiredPrice = curMinPrice;
                         }
                         if (hasOrder) {
                             desiredPrice = maxToBuy;
@@ -194,9 +210,9 @@ public class Application {
                         if (buy == null) {
                             boolean result;
                             do {
-                                result = preOrder(item.getMainKey(), desiredPrice, item.getCount(), 0);
+                                result = preOrder(item.getMainKey(), desiredPrice, item.getCount(), 0, item.getMinCount());
                                 if (result) {
-                                    report = report + String.join(" ", "\n Ordered", String.valueOf(item.getCount()), item.getName(), "!");
+                                    report = report + String.join(" ", "\n Ordered", String.valueOf(item.getCount()), item.getName(), String.valueOf(desiredPrice), "!");
                                 } else {
                                     report = report + String.join(" ", "\n Ordered", item.getName(), "fail !");
                                 }
@@ -204,13 +220,13 @@ public class Application {
                             } while (result);
                         } else {
                             if (buy.getLeftCount() < item.getCount() || buy.getBoughtCount() > 0L || buy.getPricePerOne() != desiredPrice) {
-                                if (preOrder(item.getMainKey(), desiredPrice, item.getCount(), buy.getBuyNo()))
-                                    report = report + String.join(" ", "\n Restock", item.getName());
+                                if (preOrder(item.getMainKey(), desiredPrice, item.getCount(), buy.getBuyNo(), item.getMinCount()))
+                                    report = report + String.join(" ", "\n Restock", item.getName(), String.valueOf(desiredPrice));
                                 boolean result;
                                 do {
-                                    result = preOrder(item.getMainKey(), desiredPrice, item.getCount(), 0);
+                                    result = preOrder(item.getMainKey(), desiredPrice, item.getCount(), 0, item.getMinCount());
                                     if (result) {
-                                        report = report + String.join(" ", "\n Ordered", String.valueOf(item.getCount()), item.getName(), "!");
+                                        report = report + String.join(" ", "\n Ordered", String.valueOf(item.getCount()), item.getName(), String.valueOf(desiredPrice), "!");
                                     } else {
                                         report = report + String.join(" ", "\n Ordered", item.getName(), "fail !");
                                     }
@@ -218,18 +234,32 @@ public class Application {
                                 } while (result);
                             }
                         }
+                        if (item.isExtremeMode()) {
+                            boolean result;
+                            do {
+                                result = preOrder(item.getMainKey(), maxToBuyExtreme, item.getCount(), 0, item.getMinCount());
+                                if (result) {
+                                    report = report + String.join(" ", "\n Ordered", String.valueOf(item.getCount()), item.getName(), String.valueOf(maxToBuyExtreme), "!");
+                                }
+                                Thread.sleep(200L);
+                            } while (result);
+                        }
                     } else {
                         if (buy != null && buy.getPricePerOne() >= curMinPrice)
                             report += String.join(" ", "\n Too high. Remove order", item.getName(), "!");
                     }
                 }
             }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Constant.BUY_REPORT));
+            writer.write(report);
+            writer.close();
+            if (!schedule) Desktop.getDesktop().open(new File(Constant.BUY_REPORT));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static boolean preOrder(long buyMainKey, long buyPrice, long buyCount, long buyNo) {
+    public static boolean preOrder(long buyMainKey, long buyPrice, long buyCount, long buyNo, long minCount) {
         try {
             String mainURL = props.getProperty("urlAction") + props.getProperty("preOrder");
             URL url = new URL(mainURL);
@@ -259,6 +289,8 @@ public class Application {
             conn.disconnect();
             ObjectMapper objectMapper = new ObjectMapper();
             Response res = objectMapper.readValue(jsonData.toString(), Response.class);
+            int resultCode = res.getResultCode();
+            if (resultCode == 20) return preOrder(buyMainKey, buyPrice, minCount, buyNo, 0);
             return res.getResultCode() == 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -276,6 +308,7 @@ public class Application {
 
     public static ItemSellBuyInfo getItemInfo(long mainKey) {
         try {
+            long startTime = System.nanoTime();
             String mainURL = props.getProperty("urlInfo") + props.getProperty("getItemInfo");
             URL url = new URL(mainURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -305,6 +338,8 @@ public class Application {
             conn.disconnect();
             ObjectMapper objectMapper = new ObjectMapper();
             ItemSellBuyInfo res = objectMapper.readValue(jsonData.toString(), ItemSellBuyInfo.class);
+            long endTime = System.nanoTime();
+            System.out.println(mainKey + " - " + (endTime - startTime) / 1000000);
             if (res.getResultCode() != 0) return null;
             return res;
         } catch (Exception e) {

@@ -12,6 +12,8 @@ public class AutoItem {
 
     long count;
 
+    long minCount;
+
     String minMaxPrice;
 
     boolean extremeMode;

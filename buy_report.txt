@@ -1,0 +1,84 @@
+
+
+
+
+--Buy Report--
+ Restock Iron Ore 1540
+ Ordered Iron Ore fail !
+ Ordered Iron Ore fail !
+ Restock Melted Iron Shard 5850
+ Ordered Melted Iron Shard fail !
+ Ordered Melted Iron Shard fail !
+ Ordered Melted Vanadium Shard fail !
+ Restock Pure Powder Reagent 3740
+ Ordered Pure Powder Reagent fail !
+ Ordered Pure Powder Reagent fail !
+ Ordered Silkworm Cocoon fail !
+ Ordered 3000 Fleece 4000 !
+ Ordered 3000 Fleece 4000 !
+ Ordered Fleece fail !
+ Restock Trace of Savagery 300000
+ Ordered Trace of Savagery fail !
+ Ordered Trace of Savagery fail !
+ Ordered Deer Hide fail !
+ Restock Bear Hide 3710
+ Ordered Bear Hide fail !
+ Ordered Bear Hide fail !
+ Ordered Lion Hide fail !
+ Ordered 3000 Soft Ferri Feather 2210 !
+ Ordered 3000 Soft Ferri Feather 2210 !
+ Ordered 3000 Soft Ferri Feather 2210 !
+ Ordered 3000 Soft Ferri Feather 2210 !
+ Ordered 3000 Soft Ferri Feather 2210 !
+ Ordered 3000 Soft Ferri Feather 2210 !
+ Ordered Soft Ferri Feather fail !
+ Restock Fig 1700
+ Ordered Fig fail !
+ Ordered Fig fail !
+ Ordered Nutmeg fail !
+ Ordered 3000 Freekeh 690 !
+ Ordered 3000 Freekeh 690 !
+ Ordered 3000 Freekeh 690 !
+ Ordered 3000 Freekeh 690 !
+ Ordered 3000 Freekeh 690 !
+ Ordered 3000 Freekeh 690 !
+ Ordered 3000 Freekeh 690 !
+ Ordered Freekeh fail !
+ Ordered Special Pepper fail !
+ Ordered Special Garlic fail !
+ Ordered Special Hot Pepper fail !
+ Ordered Special Citron fail !
+ Restock Deer Meat 8800
+ Ordered Deer Meat fail !
+ Ordered Deer Meat fail !
+ Restock Rhino Meat 9500
+ Ordered Rhino Meat fail !
+ Ordered Rhino Meat fail !
+ Restock Pork 9300
+ Ordered Pork fail !
+ Ordered Pork fail !
+ Ordered Bear Meat fail !
+ Restock Wolf Meat 9200
+ Ordered Wolf Meat fail !
+ Ordered Wolf Meat fail !
+ Restock Chicken Meat 3830
+ Ordered Chicken Meat fail !
+ Ordered Chicken Meat fail !
+ Too high. Remove order Snake Meat !
+ Too high. Remove order Lion Meat !
+ Restock Dried Flying Fish 6500
+ Ordered Dried Flying Fish fail !
+ Restock Dressing 2750
+ Ordered 3000 Dressing 2750 !
+ Ordered 3000 Dressing 2750 !
+ Ordered 3000 Dressing 2750 !
+ Ordered 3000 Dressing 2750 !
+ Ordered 3000 Dressing 2750 !
+ Ordered Dressing fail !
+ Too high. Remove order Cream !
+ Ordered 10 Ouk Pill of Time and Tide 15500000 !
+ Ordered 10 Ouk Pill of Time and Tide 15500000 !
+ Ordered Ouk Pill of Time and Tide fail !
+ Restock Sealed Black Magic Crystal 1920000
+ Ordered Sealed Black Magic Crystal fail !
+ Ordered Sealed Black Magic Crystal fail !

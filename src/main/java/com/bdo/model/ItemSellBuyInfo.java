@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ItemSellBuyInfo {
-    int[] priceList;
 
     ArrayList<SellBuyInfo> marketConditionList;
 
@@ -20,4 +19,6 @@ public class ItemSellBuyInfo {
     long maxRegisterForWorldMarket;
 
     int resultCode;
+
+    int biddingSellCount;
 }

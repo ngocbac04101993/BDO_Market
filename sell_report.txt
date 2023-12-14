@@ -1,0 +1,59 @@
+--Sell Report--
+ 4885/10000 ! Refill 5115 ﻿Elixir of Concentration !
+ 0/10000 Elixir of Fury ! Minlist Elixir of Fury to 42000
+ Minlist Lead Ingot to 49300
+ Minlist Copper Ingot to 37700
+ Minlist Pure Copper Crystal to 830000
+ 0/2000 Pure Tin Crystal ! Minlist Pure Tin Crystal to 850000
+ Minlist Pure Vanadium Crystal to 945000
+ Minlist Pure Titanium Crystal to 905000
+ Minlist Pure Noc Crystal to 740000
+ Minlist Red Crystal to 35500
+ Minlist Black Crystal to 55000
+ Minlist Black Stone Powder to 3300
+ 0/20000 Flax Thread ! Minlist Flax Thread to 4000
+ Minlist Knitting Yarn to 14400
+ Minlist Cotton Fabric to 103000
+ 0/10000 Silk ! Minlist Silk to 60000
+ 3943/10000 ! Refill 6057 Wool !
+ 0/20000 Tough Hide ! Minlist Tough Hide to 6000
+ 400/20000 ! Refill 19600 Thick Fur ! Minlist Thick Fur to 14000
+ Minlist Fox Blood to 27200
+ 0/20000 Wheat Flour ! Minlist Wheat Flour to 4500
+ 0/20000 Barley Flour ! Minlist Barley Flour to 4120
+ 0/20000 Potato Flour ! Minlist Potato Flour to 4410
+ 0/20000 Sweet Potato Flour ! Minlist Sweet Potato Flour to 3200
+ 0/20000 Corn Flour ! Minlist Corn Flour to 4500
+ 0/20000 Wheat Dough ! Minlist Wheat Dough to 3450
+ 0/20000 Barley Dough ! Minlist Barley Dough to 4400
+ 0/20000 Potato Dough ! Minlist Potato Dough to 4480
+ 0/20000 Sweet Potato Dough ! Minlist Sweet Potato Dough to 4400
+ 0/20000 Corn Dough ! Minlist Corn Dough to 3870
+ 0/20000 Teff Flour Dough ! Minlist Teff Flour Dough to 2780
+ 0/20000 Ground Bird Meat ! Minlist Ground Bird Meat to 6500
+ 0/20000 Cheese ! Minlist Cheese to 14900
+ 4237/10000 ! Refill 5763 Pickled Vegetables ! Minlist Pickled Vegetables to 3090
+ Minlist Cheese Gratin to 30700
+ 1423/10000 ! Refill 8577 Honey Wine !
+ 0/10000 Stir-Fried Vegetables ! Minlist Stir-Fried Vegetables to 8200
+ Minlist Makgeolli to 2000
+ Minlist Tea With Fine Scent to 10000
+ Minlist Sweet and Sour Pickled Vegetable to 9850
+ Minlist High-Quality Ham Sandwich to 75000
+ Minlist Tea with Strong Scent to 16100
+ Minlist Classic Couscous to 24100
+ Minlist Coconut Cocktail to 3910
+ 0/10000 Smoked Fish Steak ! Minlist Smoked Fish Steak to 5700
+ Minlist Dark Pudding to 26500
+ 0/10000 Grilled Bird Meat ! Minlist Grilled Bird Meat to 2350
+ 0/10000 Steaming Hot Grilled Bird Meat ! Minlist Steaming Hot Grilled Bird Meat to 10100
+ Minlist Balenos Meal to 23400
+ Minlist Special Balenos Meal to 74000
+ Minlist Special Mediah Meal to 120000
+ Minlist Valencia Meal to 33900
+ 0/10000 Special Valencia Meal ! Minlist Special Valencia Meal to 101000
+ 0/10000 O'dyllita Meal ! Minlist O'dyllita Meal to 40700
+ 0/10000 Special O'dyllita Meal ! Minlist Special O'dyllita Meal to 134000
+ 0/10000 Transparent Empty Bottle ! Minlist Transparent Empty Bottle to 5500
+ Minlist Lump of Raw Sugar to 7700
+ 1796/10000 ! Refill 8204 Organic Feed ! Minlist Organic Feed to 41100

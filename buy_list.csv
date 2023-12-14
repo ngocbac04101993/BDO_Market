@@ -1,106 +1,128 @@
-﻿Hp Medium,518,500,n,n,Alchemy
-Advanced Cooking Utensil,3719,10,y,n,Tool
-Iron Ore,4001,1000,2200,y,Process
-Lead Ore,4002,1000,y,n,Process
-Tin Ore,4004,1000,y,n,Process
-Zinc Ore,4005,1000,y,n,Process
-Coal,4007,1000,1000,n,Process
-Vanadium Ore,4008,1000,y,n,Process
-Titanium Ore,4009,1000,y,n,Process
-Noc Ore,4011,1000,y,n,Process
-Melted Lead Shard,4054,1000,7500,n,Process
-Melted Copper Shard,4057,1000,5400,n,Process
-Melted Tin Shard,4060,1000,y,n,Process
-Melted Vanadium Shard,4078,1000,y,n,Process
-Vanadium Ingot,4079,500,n,n,Process
-Melted Gold Shard,4254,1000,y,n,Process
-Rough Red Crystal,4408,1000,y,n,Process
-Rough Black Crystal,4410,1000,14000,n,Process
-Silver Azalea,5402,3000,n,n,Alchemy
-Wild Grass,5439,1000,6500,n,Alchemy
-Bracken,5532,1000,y,n,Cook
-Cotton Wool,5801,1000,y,n,Process
-Silkworm Cocoon,5803,1000,y,n,Process
-Fleece,5804,1000,y,n,Process
-Trace of Savagery,5956,100,y,y,Alchemy
-Deer Hide,6001,3000,n,n,Process
-Pig Hide,6005,3000,n,n,Process
-Bear Hide,6013,1000,3000,n,Process
-Wolf Hide,6014,1000,3000,n,Process
-Lion Hide,6020,1000,3000,n,Process
-Soft Ferri Feather,6025,3000,n,n,Processing
-Rhino Blood,6204,1000,3000,y,Alchemy
-Wolf Blood,6214,1000,3000,y,Alchemy
-Lion Blood,6223,1000,3000,n,Alchemy
-Bottle of River Water,6653,1000,y,n,Processing
-Wheat,7001,1000,n,n,Cook
-Barley,7002,1000,n,n,Cook
-Potato,7003,1000,n,n,Cook
-Sweet Potato,7004,1000,n,n,Cook
-Corn,7005,1000,n,n,Cook
-Date Palm,7016,1000,n,n,Cook
-Fig,7018,1000,n,n,Cook
-Nutmeg,7020,1000,n,n,Cook
-Teff,7022,1000,n,n,Cook
-Coconut,7026,1000,n,n,Cook
-Onion,7303,1000,y,n,Cook
-Hot Pepper,7305,1000,y,n,Cook
-High-Quality Hot Pepper,7327,1000,y,n,Cook
-High-Quality Sunflower,7330,1000,y,n,Cook
-Cinnamon,7348,1000,n,n,Cook
-Cooking Honey,7702,1000,965,n,Cook
-Deer Meat,7901,1000,n,n,Cook
-Lamb Meat,7902,1000,n,n,Cook
-Fox Meat,7903,1000,n,n,Cook
-Rhino Meat,7904,1000,n,n,Cook
-Pork,7905,1000,y,n,Cook
-Bear Meat,7912,1000,y,n,Cook
-Wolf Meat,7913,1000,n,n,Cook
-Chicken Meat,7921,1000,2300,y,Cook
-Snake Meat,7922,1000,y,n,Cook
-Lion Meat,7923,1000,y,y,Cook
-Scorpion Meat,7924,1000,y,n,Cook
-Goat Meat,7957,1000,n,n,Cook
-Dried Saurel,8509,1000,y,n,Fish
-Dried Rockfish,8510,1000,y,n,Fish
-Dried Flying Fish,8529,1000,y,n,Fish
-Dried Skipjack,8530,1000,y,n,Fish
-Dried Ray,8531,1000,y,n,Fish
-Dried Filefish,8534,1000,y,n,Fish
-Dried Scorpion Fish,8535,1000,y,n,Fish
-Dried Mullet,8536,1000,y,n,Fish
-Dried Flatfish,8560,1000,y,n,Fish
-Dried Round Herring,8564,1000,y,n,Fish
-Dried Whiting,8566,1000,y,n,Fish
-Dried Dolphinfish,8567,1000,y,n,Fish
-Dried Striped Catfish,8568,1000,y,n,Fish
-Dried Blue Fish,8573,1000,y,n,Fish
-Dried Surfperch,8574,1000,y,n,Fish
-Dried Pintado,8578,1000,y,n,Fish
-Dried Bigeye,8585,1000,y,n,Fish
-Dried Clownfish,8602,1000,y,n,Fish
-Dressing,9006,1000,y,n,Meal
-Cream,9061,1000,y,n,Process
-Egg,9064,500,12000,y,Cook
-Milk,9065,500,y,n,Cook
-Beer,9213,500,n,n,Meal
-Teff Bread,9214,500,n,n,Meal
-Freekeh Snake Stew,9215,500,n,n,Meal
-Teff Sandwich,9218,500,n,n,Meal
-Soft Bread,9260,500,y,n,Meal
-Oatmeal,9261,500,y,n,Meal
-Refined Oatmeal,9276,500,y,n,Meal
-Cold Draft Beer,9283,500,n,n,Meal
-Moist Milk Bread,9286,500,y,n,Meal
-Thick Freekeh Snake Stew,9300,500,n,n,Meal
-Spicy Teff Sandwich,9303,500,n,n,Meal
-Meat Croquette,9404,500,n,n,Meal
-Grilled Sausage,9427,500,n,n,Meal
-Grilled Scorpion,9461,500,y,n,Meal
-Crispy Grilled Scorpion,9462,500,n,n,Meal
-King of Jungle Hamburg,9463,500,n,n,Meal
-Ancient Magic Crystal - Cobelinus,15602,10,y,n,Process
-Black Stone (Weapon),16001,100,n,n,Process
-Black Stone (Armor),16002,100,n,n,Process
-Imperfect Lightstone of Fire,766104,100,n,n,Processing
-Special Rice,820130,1000,n,n,Cook
+﻿Hp Medium,518,500,n,n,n
+Advanced Cooking Utensil,3719,10,y,n,y
+Iron Ore,4001,1000,1700,y,1020
+Lead Ore,4002,1000,n,n,1500
+Copper Ore,4003,1000,n,y,n
+Tin Ore,4004,1000,n,y,8000
+Zinc Ore,4005,1000,5500,n,n
+Coal,4007,1000,1100,n,1100
+Vanadium Ore,4008,1000,10000,n,10000
+Titanium Ore,4009,1000,10000,n,10000
+Noc Ore,4011,1000,n,n,5600
+Melted Iron Shard,4051,1000,6000,y,4900
+Melted Lead Shard,4054,1000,5700,n,7550
+Melted Copper Shard,4057,1000,6000,n,4500
+Melted Tin Shard,4060,1000,n,y,11000
+Melted Vanadium Shard,4078,1000,y,y,y
+Vanadium Ingot,4079,500,n,y,y
+Titanium Ingot,4082,500,n,y,75000
+Gold Ore,4202,1000,n,n,14000
+Melted Gold Shard,4254,1000,n,n,30000
+Rough Red Crystal,4408,1000,7000,n,10000
+Rough Black Crystal,4410,1000,5000,n,10000
+Birch Sap,5004,1000,y,n,
+Clear Liquid Reagent,5301,1000,4000,y,7500
+Pure Powder Reagent,5302,1000,4000,y,7500
+Silver Azalea,5402,1000,n,n,n
+Wild Grass,5439,1000,n,n,n
+Bracken,5532,1000,n,n,15000
+Special Delotia,5537,1000,40000,y,15000
+Cotton Wool,5801,1000,n,n,5600
+Silkworm Cocoon,5803,1000,5000,y,4500
+Fleece,5804,1000,4500,n,3500
+Trace of Savagery,5956,100,y,y,220000
+Trace of Hunting,5959,100,y,n,y
+Deer Hide,6001,1000,3000,y,1850
+Rhino Hide,6004,1000,1000,n,n
+Pig Hide,6005,1000,1000,n,n
+Bear Hide,6013,1000,4000,y,
+Wolf Hide,6014,1000,4000,y,
+Lion Hide,6020,1000,4000,y,
+Soft Ferri Feather,6025,1000,2500,y,
+Rhino Blood,6204,1000,4000,n,4000
+Pig Blood,6205,1000,4500,y,2300
+Bear Blood,6213,1000,5000,n,3700
+Wolf Blood,6214,1000,4000,n,4000
+Lion Blood,6223,1000,5000,n,3700
+Wheat,7001,1000,n,n,n
+Barley,7002,1000,n,n,n
+Potato,7003,1000,n,n,n
+Sweet Potato,7004,1000,n,n,n
+Corn,7005,1000,n,n,n
+Date Palm,7016,1000,n,n,n
+Fig,7018,1000,2000,y,n
+Nutmeg,7020,1000,3000,y,3580
+Freekeh,7021,1000,750,n,n
+Teff,7022,1000,n,n,n
+Coconut,7026,1000,n,n,3920
+Teff Flour,7106,1000,1500,y,3920
+Onion,7303,1000,y,n,y
+Hot Pepper,7305,1000,y,n,y
+High-Quality Hot Pepper,7327,1000,y,n,y
+High-Quality Sunflower,7330,1000,y,n,y
+Special Pepper,7335,1000,40000,y,y
+Special Garlic,7336,1000,40000,y,y
+Special Onion,7337,1000,40000,y,y
+Special Hot Pepper,7339,1000,40000,y,y
+Special Sunflower,7342,1000,35000,y,y
+Special Citron,7362,1000,36000,y,y
+Cooking Honey,7702,3000,945,n,945
+Deer Meat,7901,1000,9500,y,n
+Lamb Meat,7902,1000,9500,y,n
+Fox Meat,7903,1000,9500,y,n
+Rhino Meat,7904,1000,9500,y,n
+Pork,7905,1000,9500,y,7200
+Bear Meat,7912,1000,9500,y,11000
+Wolf Meat,7913,1000,9500,y,n
+Chicken Meat,7921,1000,4000,y,2600
+Snake Meat,7922,1000,31000,y,32200
+Lion Meat,7923,1000,31000,y,32000
+Scorpion Meat,7924,1000,40000,n,40000
+Goat Meat,7957,1000,9500,n,n
+Dried Saurel,8509,1000,y,n,y
+Dried Rockfish,8510,1000,y,n,y
+Dried Flying Fish,8529,1000,y,n,y
+Dried Skipjack,8530,1000,y,n,y
+Dried Ray,8531,1000,y,n,y
+Dried Filefish,8534,1000,y,n,y
+Dried Scorpion Fish,8535,1000,y,n,y
+Dried Mullet,8536,1000,y,n,y
+Dried Flatfish,8560,1000,y,n,y
+Dried Round Herring,8564,1000,y,n,y
+Dried Whiting,8566,1000,y,n,y
+Dried Dolphinfish,8567,1000,y,n,y
+Dried Striped Catfish,8568,1000,y,n,y
+Dried Blue Fish,8573,1000,y,n,y
+Dried Surfperch,8574,1000,y,n,y
+Dried Pintado,8578,1000,y,n,y
+Dried Gurnard,8579,1000,y,n,y
+Dried Bigeye,8585,1000,y,n,y
+Dried Clownfish,8602,1000,y,n,y
+Dried Blue Tang,8603,1000,y,n,y
+Dressing,9006,1000,y,n,y
+Essence of Liquor,9057,1000,1000,n,850
+Cream,9061,3000,10000,y,10400
+Egg,9064,500,8500,n,10000
+Milk,9065,500,y,n,y
+Ouk Pill of Time and Tide,9070,10,15500000,y,1100000
+Red Pepper Powder,9077,500,n,n,y
+Beer,9213,500,n,n,n
+Teff Bread,9214,500,n,n,n
+Date Palm Wine,9219,500,n,n,n
+Soft Bread,9260,500,y,n,y
+Oatmeal,9261,500,y,n,y
+Refined Oatmeal,9276,500,y,n,y
+Cold Draft Beer,9283,500,5750,n,n
+Moist Milk Bread,9286,500,y,n,y
+Mild Date Palm Wine,9304,500,n,n,n
+Grilled Scorpion,9461,500,y,n,y
+Crispy Grilled Scorpion,9462,500,y,n,n
+Ancient Magic Crystal - Cobelinus,15602,10,n,n,y
+Black Stone (Weapon),16001,1000,n,n,n
+Black Stone (Armor),16002,1000,n,n,n
+Special Carrot,54005,2000,30000,y,n
+Imperfect Lightstone of Fire,766104,100,3000000,n,n
+Imperfect Lightstone of Earth,766105,100,n,n,n
+Sealed Black Magic Crystal,768160,50,2000000,y,n
+Rice,820117,1000,y,n,y
+Special Rice,820130,1000,28500,n,n

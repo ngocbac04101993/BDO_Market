@@ -1,7 +1,65 @@
-
-
-
-
---Buy Report--
- Restock Trace of Savagery
- Ordered Trace of Savagery fail !
+--Sell Report--
+ Minlist ﻿Elixir of Concentration to 21000
+ 3468/10000 ! Refill 6532 Elixir of Fury !
+ 3800/10000 ! Refill 6200 Elixir of Life !
+ Too low. Remove 9447 Elixir of Time ! 82000/88000
+ 0/10000 Iron Ingot ! Minlist Iron Ingot to 41000
+ 0/2000 Pure Iron Crystal ! Minlist Pure Iron Crystal to 845000
+ 144/10000 ! Refill 9856 Lead Ingot ! Minlist Lead Ingot to 47500
+ 0/2000 Pure Lead Crystal ! Minlist Pure Lead Crystal to 560000
+ Minlist Copper Ingot to 37700
+ 0/2000 Pure Copper Crystal ! Minlist Pure Copper Crystal to 840000
+ 0/2000 Pure Tin Crystal ! Minlist Pure Tin Crystal to 850000
+ 381/2000 ! Refill 1619 Pure Vanadium Crystal !
+ 5/20000 ! Refill 19995 Melted Titanium Shard ! Minlist Melted Titanium Shard to 24700
+ 629/2000 ! Refill 1371 Pure Titanium Crystal ! Minlist Pure Titanium Crystal to 935000
+ Minlist Red Crystal to 34000
+ Minlist Black Crystal to 55000
+ 1562/20000 ! Refill 18438 Black Stone Powder ! Minlist Black Stone Powder to 3300
+ 0/10000 Cotton Fabric ! Minlist Cotton Fabric to 95000
+ 0/10000 Silk ! Minlist Silk to 55500
+ Minlist Wool to 69000
+ Minlist Soft Hide to 10200
+ Minlist Tough Hide to 6300
+ Too low. Remove 20000 Thick Fur ! 14400/15000
+ 0/10000 Tyrant Blood ! Minlist Tyrant Blood to 138000
+ 0/20000 Barley Flour ! Minlist Barley Flour to 3850
+ 0/20000 Sweet Potato Flour ! Minlist Sweet Potato Flour to 3210
+ 0/20000 Wheat Dough ! Minlist Wheat Dough to 3710
+ 0/20000 Barley Dough ! Minlist Barley Dough to 4100
+ 2355/20000 ! Refill 17645 Potato Dough ! Minlist Potato Dough to 4460
+ 0/20000 Sweet Potato Dough ! Minlist Sweet Potato Dough to 4430
+ 0/20000 Corn Dough ! Minlist Corn Dough to 4180
+ 0/20000 Teff Flour Dough ! Minlist Teff Flour Dough to 2770
+ 0/20000 Cinnamon ! Minlist Cinnamon to 18100
+ 0/20000 Cheese ! Minlist Cheese to 14700
+ Minlist Butter to 6600
+ Minlist Fruit Wine to 3040
+ Minlist Pickled Vegetables to 3080
+ Minlist Cheese Gratin to 31100
+ 1424/10000 ! Refill 8576 Honey Wine ! Minlist Honey Wine to 2770
+ Minlist Sute Tea to 30000
+ Minlist Fig Pie to 8450
+ Too low. Remove 10000 Date Palm Wine ! 2520/6700
+ 0/10000 Stir-Fried Vegetables ! Minlist Stir-Fried Vegetables to 8200
+ Minlist Makgeolli to 2000
+ 28/10000 ! Refill 9972 Milk Tea !
+ Minlist Tea With Fine Scent to 10000
+ Minlist Sweet and Sour Pickled Vegetable to 10300
+ Minlist High-Quality Ham Sandwich to 75000
+ Minlist Tea with Strong Scent to 16600
+ 0/10000 Smoked Fish Steak ! Minlist Smoked Fish Steak to 5550
+ 1372/10000 ! Refill 8628 Dark Pudding ! Minlist Dark Pudding to 26800
+ 0/10000 Grilled Bird Meat ! Minlist Grilled Bird Meat to 2410
+ 0/10000 Steaming Hot Grilled Bird Meat ! Minlist Steaming Hot Grilled Bird Meat to 10000
+ 0/10000 Balenos Meal ! Minlist Balenos Meal to 25000
+ Too low. Remove 8333 Special Balenos Meal ! 82000/90000
+ 3652/10000 ! Refill 6348 Mediah Meal ! Minlist Mediah Meal to 40900
+ Minlist Special Mediah Meal to 122000
+ 0/10000 Valencia Meal ! Minlist Valencia Meal to 35100
+ 0/10000 O'dyllita Meal ! Minlist O'dyllita Meal to 40900
+ 0/10000 Special O'dyllita Meal ! Minlist Special O'dyllita Meal to 134000
+ 531/10000 ! Refill 9469 Transparent Empty Bottle !
+ 0/1000 Lump of Raw Sugar ! Minlist Lump of Raw Sugar to 7900
+ 0/10000 Organic Feed ! Minlist Organic Feed to 43000
+ Minlist Cooked Rice to 13900

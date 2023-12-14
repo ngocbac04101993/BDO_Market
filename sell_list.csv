@@ -1,101 +1,140 @@
-﻿Elixir of Concentration,700,10000,20000,y
-Elixir of Will,702,10000,20000,y
-Elixir of Fury,704,10000,45000,y
+﻿Elixir of Energy,682,10000,y,y
+Elixir of Concentration,700,10000,18000,y
+Elixir of Will,702,10000,18500,y
+Elixir of Fury,704,10000,y,y
 Elixir of Life,708,10000,y,y
 Elixir of Time,749,10000,88000,y
-Melted Iron Shard,4051,20000,8500,y
-Iron Ingot,4052,10000,40000,y
-Pure Iron Crystal,4053,2000,y,n
+Verdure Draught,791,1000,950000,y
+Melted Iron Shard,4051,20000,9200,y
+Iron Ingot,4052,10000,36000,y
+Pure Iron Crystal,4053,2000,y,y
 Lead Ingot,4055,10000,47500,y
-Pure Lead Crystal,4056,2000,y,n
-Copper Ingot,4058,10000,39000,y
-Pure Copper Crystal,4059,2000,y,n
-Pure Tin Crystal,4062,2000,y,n
-Melted Zinc Shard,4063,20000,22000,y
-Zinc Ingot,4064,10000,88000,y
+Pure Lead Crystal,4056,2000,700000,y
+Copper Ingot,4058,10000,34000,y
+Pure Copper Crystal,4059,2000,y,y
+Pure Tin Crystal,4062,2000,y,y
+Melted Zinc Shard,4063,20000,17000,y
+Zinc Ingot,4064,10000,60000,y
 Brass Ingot,4066,10000,58000,y
-Bronze Ingot,4067,10000,50000,y
+Bronze Ingot,4067,10000,60000,y
 Steel,4077,10000,30000,y
-Pure Vanadium Crystal,4080,2000,y,n
+Pure Vanadium Crystal,4080,2000,y,y
 Melted Titanium Shard,4081,20000,24000,y
-Pure Titanium Crystal,4083,2000,y,n
-Melted Noc Shard,4085,20000,20000,y
-Noc Ingot,4086,10000,83000,y
-Pure Noc Crystal,4087,2000,y,n
-Red Crystal,4468,20000,30000,n
-Black Crystal,4470,20000,45000,n
-Black Stone Powder,4901,20000,3300,n
+Pure Titanium Crystal,4083,2000,n,y
+Melted Noc Shard,4085,18000,20000,y
+Noc Ingot,4086,10000,72000,y
+Pure Noc Crystal,4087,2000,y,y
+Pure Gold Crystal,4256,2000,y,y
+Red Crystal,4468,20000,37500,y
+Black Crystal,4470,20000,30000,y
+Black Stone Powder,4901,20000,2500,y
 Cotton Yarn,5851,20000,22000,y
 Flax Thread,5852,20000,4000,y
-Silk Thread,5853,20000,14000,y
-Knitting Yarn,5854,20000,11500,y
-Cotton Fabric,5855,10000,90000,y
-Silk,5857,10000,55000,y
-Wool,5858,10000,60000,y
+Silk Thread,5853,20000,17000,y
+Knitting Yarn,5854,20000,13500,y
+Cotton Fabric,5855,10000,95000,y
+Silk,5857,10000,70000,y
+Wool,5858,10000,83000,y
 Soft Hide,6151,20000,5000,y
-Tough Hide,6152,20000,6300,y
-Thick Fur,6155,20000,15000,y
-Lightweight Plume,6157,20000,18000,y
-Tyrant Blood,6352,10000,n,n
-Wheat Flour,7101,20000,n,n
-Barley Flour,7102,20000,n,n
-Potato Flour,7103,20000,n,n
-Sweet Potato Flour,7104,20000,n,n
-Corn Flour,7105,20000,n,n
-Wheat Dough,7201,20000,n,n
-Barley Dough,7202,20000,n,n
-Potato Dough,7203,20000,n,n
-Sweet Potato Dough,7204,20000,n,n
-Corn Dough,7205,20000,n,n
-Teff Flour Dough,7206,20000,n,n
+Tough Hide,6152,20000,6000,y
+Thick Fur,6155,20000,17000,y
+Lightweight Plume,6157,20000,y,y
+Fine Thick Fur,6163,20000,17000,y
+Fine Lightweight Plume,6165,10000,y,y
+Fox Blood,6203,20000,20000,y
+Tyrant Blood,6352,10000,n,y
+Wheat Flour,7101,20000,n,y
+Barley Flour,7102,20000,n,y
+Potato Flour,7103,20000,n,y
+Sweet Potato Flour,7104,20000,n,y
+Corn Flour,7105,20000,n,y
+Wheat Dough,7201,20000,n,y
+Barley Dough,7202,20000,n,y
+Potato Dough,7203,20000,n,y
+Sweet Potato Dough,7204,20000,n,y
+Corn Dough,7205,20000,n,y
+Teff Flour Dough,7206,20000,n,y
+Cinnamon,7348,20000,y,y
 Ground Bird Meat,7958,20000,5000,y
-Cheese,9062,20000,y,n
-Butter,9063,20000,y,n
-Vinegar,9066,20000,1700,n
-Fruit Wine,9201,10000,3000,n
-Pickled Vegetables,9202,10000,3000,n
+Cheese,9062,20000,y,y
+Butter,9063,20000,8800,y
+Vinegar,9066,20000,1700,y
+Fruit Wine,9201,10000,3000,y
+Pickled Vegetables,9202,10000,3000,y
 Cheese Gratin,9203,10000,30000,y
 Honey Wine,9206,10000,y,y
 Sute Tea,9207,10000,30000,y
+Freekeh Snake Stew,9215,10000,y,y
 Fig Pie,9216,10000,8000,y
-Teff Sandwich,9218,10000,n,n
-Date Palm Wine,9219,10000,6700,n
-Couscous,9220,10000,y,n
-Stir-Fried Vegetables,9241,10000,8200,n
-Makgeolli,9262,10000,2000,y
+Teff Sandwich,9218,10000,y,y
+Date Palm Wine,9219,10000,5000,y
+Couscous,9220,10000,y,y
+Stir-Fried Vegetables,9241,10000,8200,y
+Makgeolli,9262,10000,2500,y
 Milk Tea,9263,10000,30000,y
 Ham Sandwich,9267,10000,38000,y
-Tea With Fine Scent,9270,10000,10000,y
-Smooth Milk Tea,9277,10000,n,n
-Full-bodied Makgeolli,9279,10000,n,n
-Sweet and Sour Pickled Vegetable,9281,10000,9000,n
-Chewy Cheese Gratin,9282,10000,60000,y
-Crispy Stir-Fried Vegetables,9284,10000,n,n
+Tea With Fine Scent,9270,10000,y,y
+Smooth Milk Tea,9277,10000,n,y
+Full-bodied Makgeolli,9279,10000,5600,y
+Luscious Fruit Wine,9280,10000,y,y
+Sweet and Sour Pickled Vegetable,9281,10000,9000,y
+Chewy Cheese Gratin,9282,10000,57000,y
+Crispy Stir-Fried Vegetables,9284,10000,y,y
 High-Quality Ham Sandwich,9290,10000,75000,y
-Tea with Strong Scent,9292,10000,y,n
-Healthy Sute Tea,9296,10000,n,n
-Sweet Fig Pie,9301,10000,n,n
-Spicy Teff Sandwich,9303,10000,n,n
-Mild Date Palm Wine,9304,10000,10000,n
-Classic Couscous,9305,10000,y,n
+Tea with Strong Scent,9292,10000,y,y
+Tangy Honey Wine,9295,10000,y,y
+Healthy Sute Tea,9296,10000,y,y
+Thick Freekeh Snake Stew,9300,10000,y,y
+Sweet Fig Pie,9301,10000,y,y
+Spicy Teff Sandwich,9303,10000,y,y
+Mild Date Palm Wine,9304,10000,10000,y
+Classic Couscous,9305,10000,y,y
 Coconut Cocktail,9307,10000,3500,y
-Chilled Coconut Cocktail,9310,10000,n,n
-Balacs Lunchbox,9359,10000,y,n
-Smoked Fish Steak,9417,10000,y,n
-Dark Pudding,9422,10000,25000,y
-Golden Smoked Fish Steak,9445,10000,n,n
-Bloody Dark Pudding,9448,10000,75000,y
-Grilled Bird Meat,9492,10000,y,n
-Steaming Hot Grilled Bird Meat,9493,10000,8000,n
-Balenos Meal,9601,10000,25000,y
-Special Balenos Meal,9602,10000,90000,y
-Mediah Meal,9607,10000,35000,n
-Special Mediah Meal,9608,10000,120000,n
-Valencia Meal,9609,10000,35000,y
-Special Valencia Meal,9610,10000,120000,y
-O'dyllita Meal,9638,10000,40000,y
-Special O'dyllita Meal,9639,10000,125000,y
-Transparent Empty Bottle,16102,10000,y,n
-Lump of Raw Sugar,54003,1000,7000,y
-Organic Feed,54018,10000,43000,n
-Cooked Rice,820815,10000,y,n
+Chilled Coconut Cocktail,9310,10000,y,y
+Carrot Confit,9321,10000,y,y
+Delotia Pudding,9325,10000,y,y
+Blood Red Delotia Pudding,9326,10000,y,y
+Stir-Fried Bracken and Meat,9333,10000,y,y
+Light Stir-Fried Bracken and Meat,9334,10000,y,y
+Chicken Breast Salad,9335,10000,y,y
+Fresh Chicken Breast Salad,9336,10000,y,y
+Balacs Lunchbox,9359,10000,y,y
+Meat Croquette,9404,10000,y,y
+Smoked Fish Steak,9417,10000,y,y
+Dark Pudding,9422,10000,20000,y
+Lean Meat Salad,9425,10000,25000,y
+Grilled Sausage,9427,10000,y,y
+Top Grade Lean Meat Salad,9435,10000,y,y
+Crispy Meat Croquette,9438,10000,y,y
+Golden Smoked Fish Steak,9445,10000,y,y
+Bloody Dark Pudding,9448,10000,70000,y
+King of Jungle Hamburg,9463,10000,y,y
+Jumbo King of Jungle Hamburg,9464,10000,y,y
+Grilled Bird Meat,9492,10000,2000,y
+Steaming Hot Grilled Bird Meat,9493,10000,8000,y
+Balenos Meal,9601,10000,23000,y
+Special Balenos Meal,9602,10000,69000,y
+Serendia Meal,9603,10000,n,y
+Special Serendia Meal,9604,10000,n,y
+Mediah Meal,9607,10000,30000,y
+Special Mediah Meal,9608,10000,90000,y
+Valencia Meal,9609,10000,30000,y
+Special Valencia Meal,9610,10000,90000,y
+Knight Combat Rations,9631,10000,46000,y
+Kamasylvia Meal,9635,10000,n,y
+Special Kamasylvia Meal,9636,10000,n,y
+O'dyllita Meal,9638,10000,y,y
+Special O'dyllita Meal,9639,10000,y,y
+Eilton Meal,9640,10000,y,y
+Special Eilton Meal,9641,10000,y,y
+Seafood Cron Meal,9691,10000,300000,y
+Transparent Empty Bottle,16102,10000,5000,y
+Lump of Raw Sugar,54003,1000,5000,y
+Good Feed,54017,10000,y,y
+Organic Feed,54018,10000,40000,y
+Purified Lightstone of Fire,766001,300,13000000,y
+Cooked Rice,820815,10000,y,y
+Steaming Cooked Rice,820816,10000,y,y
+Moodle Gukbap,820856,10000,80000,y
+Dalbeol Gukbap,820857,10000,y,y
+Byeot County Gukbap,820858,10000,80000,y

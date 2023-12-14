@@ -9,7 +9,9 @@ public class Constant {
 
     public static final String BUY_LIST = "buy_list.csv";
 
-    public static final String REPORT = "report.txt";
+    public static final String SELL_REPORT = "sell_report.txt";
+
+    public static final String BUY_REPORT = "buy_report.txt";
 
     public static final String YES = "y";
 
